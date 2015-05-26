@@ -25,10 +25,6 @@
 (helm-mode 1)
 (helm-autoresize-mode 1)
 
-;; Smart Parens
-(require 'smartparens-config)
-(smartparens-global-mode 1)
-
 ;; Hydras
 
 (require 'windmove)
@@ -116,3 +112,4 @@ Frames: _f_rame new  _df_ delete
 
 ;; Load modules
 (load "~/.emacs.d/keybindings.el")
+(load "~/.emacs.d/config.el")
