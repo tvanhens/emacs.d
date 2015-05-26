@@ -24,8 +24,6 @@
 ;; Enable helm mode
 (helm-mode 1)
 (helm-autoresize-mode 1)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
 ;; Smart Parens
 (require 'smartparens-config)
@@ -35,7 +33,7 @@
 
 (require 'windmove)
 
- (defun hydra-move-splitter-left (arg)
+(defun hydra-move-splitter-left (arg)
   "Move window splitter left."
   (interactive "p")
   (if (let ((windmove-wrap-around))
@@ -68,12 +66,9 @@
     (enlarge-window arg)))
 
 ;; TODO: refactor key-chords into a bindings ns
-
 (require 'key-chord)
-
-(key-chord-define-global "jj" 'hydra-window/body)
-(key-chord-define-global "jg" 'magit-status)
-
+(key-chord-mode +1)
+ 
 (defhydra hydra-window (:color red
                                 :hint nil)
    "
@@ -116,7 +111,8 @@ Frames: _f_rame new  _df_ delete
    ("b" helm-buffers-list "buf")
    ("m" headlong-bookmark-jump))
 
-(key-chord-mode +1)
-
 ;; Magit config
 (setq magit-last-seen-setup-instructions "1.4.0")
+
+;; Load modules
+(load "~/.emacs.d/keybindings.el")
