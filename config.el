@@ -1,7 +1,7 @@
 ;; Emacs
-
 (line-number-mode t)
 (column-number-mode t)
+(load-theme 'monokai t)
 
 ;; Company mode
 (global-company-mode t)

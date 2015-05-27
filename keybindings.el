@@ -3,6 +3,7 @@
 (key-chord-define-global "jw" 'hydra-window/body)
 (key-chord-define-global "jg" 'magit-status)
 (key-chord-define-global "jc" 'hydra-emacs-config/body)
+(key-chord-define-global "jp" 'prodigy)
 
 ;; -- Key Bindings -------------------------------------------------------------
 

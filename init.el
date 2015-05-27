@@ -15,9 +15,6 @@
 
 (pallet-mode t)
 
-;; Set theme
-(load-theme 'zenburn t)
-
 ;; Turn off alarms
 (setq ring-bell-function 'ignore)
 

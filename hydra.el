@@ -5,7 +5,8 @@
   ("i" (find-file "~/.emacs.d/init.el") "init")
   ("c" (find-file "~/.emacs.d/config.el") "config")
   ("k" (find-file "~/.emacs.d/keybindings.el") "keys")
-  ("h" (find-file "~/.emacs.d/hydra.el") "hydras"))
+  ("h" (find-file "~/.emacs.d/hydra.el") "hydras")
+  ("p" (find-file "~/.emacs.d/processes.el") "proccesses"))
 
 ;; -- Window -------------------------------------------------------------------
 
