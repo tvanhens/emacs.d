@@ -18,6 +18,7 @@
 (depends-on "flycheck-cask")
 (depends-on "helm")
 (depends-on "helm-company")
+(depends-on "helm-projectile")
 (depends-on "htmlize")
 (depends-on "hungry-delete")
 (depends-on "hydra")

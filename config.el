@@ -1,3 +1,8 @@
+;; Emacs
+
+(line-number-mode t)
+(column-number-mode t)
+
 ;; Company mode
 (global-company-mode t)
 
@@ -9,3 +14,8 @@
 
 ;; Smartparens
 (smartparens-global-strict-mode t)
+(sp-pair "'" nil :actions :rem)
+
+;; Projectile
+(projectile-global-mode t)
+(helm-projectile-on)

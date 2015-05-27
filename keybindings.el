@@ -1,14 +1,16 @@
-;; -- Key Chords ---------------------------------------------
+;; -- Key Chords ---------------------------------------------------------------
 
-(key-chord-define-global "jj" 'hydra-window/body)
+(key-chord-define-global "jw" 'hydra-window/body)
 (key-chord-define-global "jg" 'magit-status)
+(key-chord-define-global "jc" 'hydra-emacs-config/body)
 
-;; -- Key Bindings -------------------------------------------
+;; -- Key Bindings -------------------------------------------------------------
 
 ;; Helm
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-i") 'helm-company)
 
 ;; Paredit
