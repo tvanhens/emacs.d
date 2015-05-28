@@ -4,6 +4,8 @@
 (key-chord-define-global "jg" 'magit-status)
 (key-chord-define-global "jc" 'hydra-emacs-config/body)
 (key-chord-define-global "jp" 'prodigy)
+(key-chord-define-global "jk" 'ace-jump-char-mode)
+(key-chord-define-global "jl" 'ace-jump-line-mode)
 
 ;; -- Key Bindings -------------------------------------------------------------
 
@@ -16,7 +18,7 @@
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-i") 'helm-company)
 (bind-key "C-c r" 'cljr-helm clojure-mode-map)
-(bind-key* "C-s" 'helm-occur-from-isearch)
+(bind-key* "M-i" 'helm-swoop)
 
 ;; Paredit
 

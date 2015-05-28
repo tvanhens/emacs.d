@@ -1,6 +1,7 @@
 (source gnu)
 (source melpa)
 
+(depends-on "ace-jump-mode")
 (depends-on "ace-window")
 (depends-on "better-defaults")
 (depends-on "bind-key")
@@ -23,6 +24,7 @@
 (depends-on "helm-ag")
 (depends-on "helm-company")
 (depends-on "helm-projectile")
+(depends-on "helm-swoop")
 (depends-on "htmlize")
 (depends-on "hungry-delete")
 (depends-on "hydra")
