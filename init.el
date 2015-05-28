@@ -66,6 +66,7 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; Load modules
+(load "~/.emacs.d/processes.el")
 (load "~/.emacs.d/keybindings.el")
 (load "~/.emacs.d/config.el")
 (load "~/.emacs.d/hydra.el")
