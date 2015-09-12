@@ -25,9 +25,20 @@
 (setq line-number-mode t)
 (setq column-number-mode t)
 
+;; Eldoc Mode
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+
+;; -----------------------------------------------------------------------------
+;; Keybindings:
+
 ;; -----------------------------------------------------------------------------
 ;; Misc:
 
 ;; Exec path
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+
+;; Company mode
+(add-hook 'after-init-hook 'global-company-mode)

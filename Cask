@@ -2,8 +2,10 @@
 (source melpa)
 
 (depends-on "better-defaults")
+(depends-on "bind-key")
 (depends-on "cask")
 (depends-on "cider")
+(depends-on "company")
 (depends-on "dash")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
