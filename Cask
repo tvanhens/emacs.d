@@ -13,6 +13,7 @@
 (depends-on "magit")
 (depends-on "package-build")
 (depends-on "pallet")
+(depends-on "rainbow-delimiters")
 (depends-on "s")
 (depends-on "shut-up")
 (depends-on "smartparens")

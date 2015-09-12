@@ -53,3 +53,9 @@
 ;; Smartparens
 (require 'smartparens-config)
 (smartparens-global-strict-mode t)
+
+;; Cider
+(add-hook 'cider-mode-hook #'eldoc-mode)
+
+;; Rainbow Delimeters
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
