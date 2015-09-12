@@ -15,4 +15,5 @@
 (depends-on "pallet")
 (depends-on "s")
 (depends-on "shut-up")
+(depends-on "smartparens")
 (depends-on "zenburn-theme")

@@ -47,3 +47,7 @@
 
 ;; Magit
 (setq magit-push-always-verify nil)
+
+;; Smartparens
+(require 'smartparens-config)
+(smartparens-global-strict-mode t)
