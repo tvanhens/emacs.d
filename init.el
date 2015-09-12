@@ -18,6 +18,12 @@
   (find-file "~/.emacs.d/init.el"))
 (bind-key "C-c c" 'jump-to-init-el)
 
+;; Inhibit startup screen
+(setq inhibit-startup-message t)
+
+;; Open all in same buffer
+(setq ns-pop-up-frames nil)
+
 ;; Turn off alarms
 (setq ring-bell-function 'ignore)
 
