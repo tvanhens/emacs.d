@@ -5,3 +5,4 @@
 /processes.el
 /.mc-lists.el
 /recentf
+elpa/*
