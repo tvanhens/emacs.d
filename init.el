@@ -59,3 +59,6 @@
 
 ;; Rainbow Delimeters
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;; Whitespace Cleanup
+(global-whitespace-cleanup-mode t)
