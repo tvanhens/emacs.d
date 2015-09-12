@@ -12,6 +12,12 @@
 ;; -----------------------------------------------------------------------------
 ;; Emacs Settings:
 
+;; Jump to config
+(defun jump-to-init-el ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+(bind-key "C-c c" 'jump-to-init-el)
+
 ;; Turn off alarms
 (setq ring-bell-function 'ignore)
 
