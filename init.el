@@ -44,3 +44,6 @@
 
 ;; Company mode
 (add-hook 'after-init-hook 'global-company-mode)
+
+;; Magit
+(setq magit-push-always-verify nil)
