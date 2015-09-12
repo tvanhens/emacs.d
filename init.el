@@ -31,12 +31,7 @@
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
 ;; -----------------------------------------------------------------------------
-;; Keybindings:
-
-(bind-key "C-x g" 'magit-status)
-
-;; -----------------------------------------------------------------------------
-;; Misc:
+;; Package Config:
 
 ;; Exec path
 (when (memq window-system '(mac ns))
@@ -47,6 +42,7 @@
 
 ;; Magit
 (setq magit-push-always-verify nil)
+(bind-key "C-x g" 'magit-status)
 
 ;; Smartparens
 (require 'smartparens-config)
