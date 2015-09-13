@@ -82,3 +82,6 @@
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 (bind-key "C-c n" 'indent-buffer)
+
+;; Toggle Strict Smart Parens
+(bind-key "C-x p" 'smartparens-global-strict-mode)
