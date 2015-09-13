@@ -12,12 +12,6 @@
 ;; -----------------------------------------------------------------------------
 ;; Emacs Settings:
 
-;; Jump to config
-(defun jump-to-init-el ()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
-(bind-key "C-c c" 'jump-to-init-el)
-
 ;; Inhibit startup screen
 (setq inhibit-startup-message t)
 
@@ -72,3 +66,19 @@
 ;; Undo Tree
 (require 'undo-tree)
 (global-undo-tree-mode)
+
+;; -----------------------------------------------------------------------------
+;; Customizations:
+
+;; Jump to config
+(defun jump-to-init-el ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+(bind-key "C-c c" 'jump-to-init-el)
+
+;; Indent Buffer
+(defun indent-buffer ()
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))
+(bind-key "C-c n" 'indent-buffer)
