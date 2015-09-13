@@ -68,3 +68,7 @@
 
 ;; Whitespace Cleanup
 (global-whitespace-cleanup-mode t)
+
+;; Undo Tree
+(require 'undo-tree)
+(global-undo-tree-mode)

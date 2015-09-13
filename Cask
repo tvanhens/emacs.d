@@ -17,5 +17,6 @@
 (depends-on "s")
 (depends-on "shut-up")
 (depends-on "smartparens")
+(depends-on "undo-tree")
 (depends-on "whitespace-cleanup-mode")
 (depends-on "zenburn-theme")
