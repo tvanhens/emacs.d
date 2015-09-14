@@ -67,6 +67,12 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
+;; Ace Window
+(bind-key "M-p" 'ace-window)
+(bind-key "C-x o" 'ace-window)
+(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+      aw-background nil)
+
 ;; -----------------------------------------------------------------------------
 ;; Customizations:
 

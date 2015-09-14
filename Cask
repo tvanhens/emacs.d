@@ -1,6 +1,7 @@
 (source gnu)
 (source melpa)
 
+(depends-on "ace-window")
 (depends-on "better-defaults")
 (depends-on "bind-key")
 (depends-on "cask")
