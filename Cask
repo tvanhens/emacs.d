@@ -12,6 +12,7 @@
 (depends-on "exec-path-from-shell")
 (depends-on "f")
 (depends-on "helm")
+(depends-on "helm-projectile")
 (depends-on "magit")
 (depends-on "package-build")
 (depends-on "pallet")
