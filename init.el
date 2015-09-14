@@ -12,6 +12,9 @@
 ;; Custom packages
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 
+;; Display custom keybindings
+(bind-key "C-h M-b" 'describe-personal-keybindings)
+
 ;; -----------------------------------------------------------------------------
 ;; Emacs Settings:
 
