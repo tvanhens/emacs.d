@@ -11,6 +11,7 @@
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
 (depends-on "f")
+(depends-on "helm")
 (depends-on "magit")
 (depends-on "package-build")
 (depends-on "pallet")

@@ -9,6 +9,9 @@
 (require 'pallet)
 (pallet-mode t)
 
+;; Custom packages
+(add-to-list 'load-path "~/.emacs.d/elisp/")
+
 ;; -----------------------------------------------------------------------------
 ;; Emacs Settings:
 
@@ -39,6 +42,8 @@
 ;; -----------------------------------------------------------------------------
 ;; Package Config:
 
+(require 'helm-custom)
+
 ;; Exec path
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
@@ -53,6 +58,7 @@
 ;; Smartparens
 (require 'smartparens-config)
 (smartparens-global-strict-mode t)
+(bind-key "C-x p" 'smartparens-global-strict-mode)
 
 ;; Cider
 (add-hook 'cider-mode-hook #'eldoc-mode)
@@ -88,6 +94,3 @@
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 (bind-key "C-c n" 'indent-buffer)
-
-;; Toggle Strict Smart Parens
-(bind-key "C-x p" 'smartparens-global-strict-mode)
