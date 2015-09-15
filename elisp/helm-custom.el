@@ -3,12 +3,14 @@
 (require 'helm)
 (require 'helm-config)
 (require 'magit)
+(require 'company)
 
 (bind-key "C-c h" 'helm-command-prefix)
 (unbind-key "C-x c")
 
 (bind-key "<tab>" 'helm-execute-persistent-action)
 (bind-key "<tab>" 'magit-section-toggle magit-mode-map)
+(bind-key "<tab>" 'company-complete clojure-mode-map)
 (bind-key "C-i" 'helm-execute-persistent-action)
 (bind-key "C-z" 'helm-select-action)
 (bind-key "C-x C-f" 'helm-find-files)
