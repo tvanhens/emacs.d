@@ -4,6 +4,7 @@
 (require 'helm-config)
 (require 'magit)
 (require 'company)
+(require 'clojure-mode)
 
 (bind-key "C-c h" 'helm-command-prefix)
 (unbind-key "C-x c")
