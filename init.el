@@ -18,6 +18,9 @@
 ;; -----------------------------------------------------------------------------
 ;; Emacs Settings:
 
+;; Disable auto-save
+(setq auto-save-default nil)
+
 ;; Inhibit startup screen
 (setq inhibit-startup-message t)
 
@@ -85,6 +88,9 @@
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
       aw-background nil)
 
+;; Org Mode
+(setq org-return-follows-link t)
+
 ;; -----------------------------------------------------------------------------
 ;; Customizations:
 
@@ -100,3 +106,29 @@
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 (bind-key "C-c n" 'indent-buffer)
+
+;; Clojure Mode Custom Indentations
+(define-clojure-indent
+  (om/set-state! 'defun)
+  (om/transact! 'defun)
+  (om/build 'defun)
+  (dom/form 'defun)
+  (dom/div 'defun))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(clojure-use-backtracking-indent t)
+ '(helm-external-programs-associations (quote (("html" . "open"))))
+ '(safe-local-variable-values
+   (quote
+    ((eval setenv "DATOMIC_PASSWORD" "1aa95b8f-dda6-4877-93e5-6ed53774cecc")
+     (eval setenv "DATOMIC_USERNAME" "tyler@mainstreetgenome.com")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

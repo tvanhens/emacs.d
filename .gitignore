@@ -7,3 +7,5 @@
 /recentf
 elpa/*
 /helm-doc.org
+/eshell/**
+/gh/melpa/
