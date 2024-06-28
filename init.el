@@ -79,6 +79,4 @@
   (setq ivy-count-format "(%d/%d) "))
 
 (use-package multiple-cursors :ensure t
-  :config
-  (require 'multiple-cursors)
-  (global-set-key (kbd "M-d") 'mc/mark-next-like-this-symbol))
+  :bind (("M-d" . 'mc/mark-next-like-this-symbol)))
