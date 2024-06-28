@@ -47,7 +47,7 @@
 (setq package-enable-at-startup nil)
 
 ;; Default preferences
-(set-frame-font "Inconsolata 12" nil t)
+(set-frame-font "Inconsolata 18" nil t)
 (global-display-line-numbers-mode)
 (desktop-save-mode 1)
 (electric-pair-mode t)
@@ -61,7 +61,8 @@
 (use-package gruvbox-theme :ensure t
   :config (load-theme 'gruvbox-dark-medium t))
 
-(use-package magit :ensure t
+(use-package transient :ensure t)
+(use-package magit :ensure t :after transient
   :bind (("C-x g" . magit-status)))
 
 (use-package counsel :ensure t
@@ -74,4 +75,4 @@
 (use-package multiple-cursors :ensure t
   :config
   (require 'multiple-cursors)
-  (global-set-key (kbd "M-d") 'mc/mark-next-like-this))
+  (global-set-key (kbd "M-d") 'mc/mark-next-like-this-symbol))
