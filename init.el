@@ -66,7 +66,13 @@
   :bind (("C-x g" . magit-status)))
 
 (use-package counsel :ensure t
-  :bind (("C-x C-f" . 'counsel-find-file))
+  :bind (("C-s" . swiper-isearch)
+         ("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("M-y" . counsel-yank-pop)
+         ("C-x b" . ivy-switch-buffer)
+         ("C-c v" . ivy-push-view)
+         ("C-c V" . ivy-pop-view))
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
