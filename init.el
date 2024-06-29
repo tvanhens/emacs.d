@@ -122,6 +122,12 @@
   ;; Tidy shadowed file names
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
 (use-package dirvish :ensure t
   :after all-the-icons
   :init
@@ -152,8 +158,9 @@
   :bind (("C-x g" . magit-status)))
 (use-package transient :ensure t)
 
-;; (use-package consult :ensure t
-;;   :bind (("C-x b" . consult-buffer)))
+(use-package consult :ensure t
+  :bind (("C-x b" . consult-buffer)
+         ("C-s" . consult-line)))
 
 ;; (use-package flycheck :ensure t
 ;;   :config
