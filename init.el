@@ -138,6 +138,7 @@
   :bind
   (("C-x d" . dirvish)
    :map dirvish-mode-map
+   ("a" . dirvish-quick-access)
    ("TAB" . dirvish-subtree-toggle)))
 
 (use-package dired-gitignore :ensure t
