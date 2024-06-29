@@ -55,7 +55,7 @@
   (make-backup-files nil)
   ;; Only include commands appropriate for the current buffer
   (read-extended-command-predicate #'command-completion-default-include-p)
-  :config
+  :init
   (set-frame-font "Inconsolata 18" nil t)
   (global-display-line-numbers-mode)
   (desktop-save-mode 1)
@@ -79,20 +79,20 @@
           dired-listing-switches "-aBhl --group-directories-first")))
 
 (use-package exec-path-from-shell :ensure t
-  :config
+  :init
   (exec-path-from-shell-initialize))
 
 (use-package better-defaults :ensure t)
 
 (use-package gruvbox-theme :ensure t
-  :config
+  :init
   (load-theme 'gruvbox-dark-medium t))
 
 (use-package all-the-icons :ensure t
   :if (display-graphic-p))
 
 (use-package which-key :ensure t
-  :config
+  :init
   (setq which-key-idle-delay 0.5)
   (which-key-mode))
 
@@ -100,7 +100,7 @@
   ;; Corfu is used for completions
   :custom
   (corfu-auto t)
-  :config
+  :init
   (global-corfu-mode))
 
 (use-package vertico :ensure t
