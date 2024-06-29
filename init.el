@@ -97,6 +97,9 @@
   (setq which-key-idle-delay 0.5)
   (which-key-mode))
 
+(use-package multiple-cursors :ensure t
+  :bind (("M-d" . 'mc/mark-next-like-this-symbol)))
+
 (use-package corfu :ensure t
   ;; Corfu is used for completions
   :custom
@@ -168,9 +171,6 @@
   (global-undo-tree-mode))
 
 
-
-;; (use-package multiple-cursors :ensure t
-;;   :bind (("M-d" . 'mc/mark-next-like-this-symbol)))
 (use-package flycheck :ensure t
   :config
   (global-flycheck-mode))
