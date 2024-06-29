@@ -158,7 +158,7 @@
 (use-package consult :ensure t
   :bind (("C-x b" . consult-buffer)
          ("C-s"   . consult-line)
-         ("C-y"   . consult-yank-pop)))
+         ("M-y"   . consult-yank-pop)))
 
 (use-package undo-tree :ensure t
   :bind (("C-x u"))
