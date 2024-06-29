@@ -58,7 +58,8 @@
   :init
   (set-frame-font "Inconsolata 18" nil t)
   (global-display-line-numbers-mode)
-  (desktop-save-mode 1)
+  ;; Doesn't seem to work with language-specific modes
+  ;; (desktop-save-mode 1)
   (electric-pair-mode t)
   (setq-default tab-width 4)
   (tab-bar-mode t)
@@ -166,41 +167,29 @@
   (setq undo-tree-auto-save-history nil)
   (global-undo-tree-mode))
 
-;; (use-package flycheck :ensure t
-;;   :config
-;;   (global-flycheck-mode))
-
-;; (use-package projectile :ensure t
-;;   :config
-;;   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-;;   (projectile-mode +1))
-
-;; (use-package undo-tree :ensure t
-;;   :bind (("C-x u"))
-;;   :config
-;;   (setq undo-tree-auto-save-history nil)
-;;   (global-undo-tree-mode))
-
-;; ;; May not be needed in emacs 30
 
 
 ;; (use-package multiple-cursors :ensure t
 ;;   :bind (("M-d" . 'mc/mark-next-like-this-symbol)))
+(use-package flycheck :ensure t
+  :config
+  (global-flycheck-mode))
 
 ;; (use-package yasnippet :ensure t)
 
-;; (use-package lsp-mode :ensure t
-;;   :init
-;;   (setq lsp-keymap-prefix "C-l")
-;;   :hook ((go-mode . lsp)
-;;          (lsp-mode . lsp-enable-which-key-integration))
-;;   :commands lsp
-;;   :config
-;;   (add-hook 'before-save-hook #'lsp-format-buffer 0 t))
-;; (use-package lsp-ui :ensure t :commands lsp-ui-mode)
-;; (use-package lsp-ivy :ensure t :after counsel :commands lsp-ivy-workspace-symbol)
-;; (use-package lsp-treemacs :ensure t :commands lsp-treemacs-errors-list)
+(use-package lsp-mode :ensure t
+  :init
+  (setq lsp-keymap-prefix "C-l")
+  :hook ((lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+(use-package lsp-ui :ensure t :commands lsp-ui-mode)
 
-;; ;; Languages
-;; (use-package go-mode :ensure t
-;;   :mode "\\.go\\'")
+;; Languages
+(use-package go-mode :ensure t
+  :mode "\\.go\\'"
+  :config
+  (defun my/go-mode-setup ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t))
+  (add-hook 'go-mode-hook #'my/go-mode-setup))
+(use-package lsp-mode
+  :hook ((go-mode . lsp)))
