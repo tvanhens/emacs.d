@@ -170,6 +170,8 @@
   (setq undo-tree-auto-save-history nil)
   (global-undo-tree-mode))
 
+(use-package eat :ensure t
+  :bind (("C-c C-t" . eat)))
 
 (use-package flycheck :ensure t
   :config
