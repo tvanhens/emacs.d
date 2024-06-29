@@ -193,5 +193,9 @@
   (defun my/go-mode-setup ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t))
   (add-hook 'go-mode-hook #'my/go-mode-setup))
-(use-package lsp-mode
-  :hook ((go-mode . lsp)))
+(use-package lsp-mode :hook ((go-mode . lsp)))
+
+;; ML And coding assistants
+(use-package gptel :ensure t
+  :bind (("C-c C-g m" . gptel-menu)
+         ("C-c C-g RET" . gptel-send)))
