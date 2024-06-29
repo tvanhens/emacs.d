@@ -63,9 +63,6 @@
   (setq-default tab-width 4)
   (tab-bar-mode t)
 
-  ;; Fixed dired warning on OSX
-  ;; (setq ls-lisp-use-insert-directory-program nil)
-  ;; (require 'ls-lisp)
 
   ;; Do not allow the cursor in the minibuffer prompt
   (setq minibuffer-prompt-properties
