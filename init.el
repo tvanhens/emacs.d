@@ -159,6 +159,12 @@
   :bind (("C-x b" . consult-buffer)
          ("C-s" . consult-line)))
 
+(use-package undo-tree :ensure t
+  :bind (("C-x u"))
+  :config
+  (setq undo-tree-auto-save-history nil)
+  (global-undo-tree-mode))
+
 ;; (use-package flycheck :ensure t
 ;;   :config
 ;;   (global-flycheck-mode))
