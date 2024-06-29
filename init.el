@@ -62,7 +62,7 @@
   (electric-pair-mode t)
   (setq-default tab-width 4)
   (tab-bar-mode t)
-
+  (recentf-mode t)
 
   ;; Do not allow the cursor in the minibuffer prompt
   (setq minibuffer-prompt-properties
