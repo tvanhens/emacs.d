@@ -57,13 +57,12 @@
   (read-extended-command-predicate #'command-completion-default-include-p)
   :init
   (set-frame-font "Inconsolata 18" nil t)
-  (global-display-line-numbers-mode)
-  ;; Doesn't seem to work with language-specific modes
-  ;; (desktop-save-mode 1)
+  (global-display-line-numbers-mode t)
+  (desktop-save-mode 1)
   (electric-pair-mode t)
-  (setq-default tab-width 4)
-  (tab-bar-mode t)
   (recentf-mode t)
+
+  (setq-default tab-width 4)
 
   ;; Do not allow the cursor in the minibuffer prompt
   (setq minibuffer-prompt-properties
@@ -145,7 +144,8 @@
   :bind
   (("C-x d" . dirvish)
    :map dirvish-mode-map
-   ("a" . dirvish-quick-access)
+   ("a"   . dirvish-quick-access)
+   ("n"   . dirvish-narrow)
    ("TAB" . dirvish-subtree-toggle)))
 
 (use-package dired-gitignore :ensure t
@@ -173,29 +173,13 @@
 (use-package eat :ensure t
   :bind (("C-c C-t" . eat)))
 
-(use-package flycheck :ensure t
-  :config
-  (global-flycheck-mode))
-
-;; (use-package yasnippet :ensure t)
-
-(use-package lsp-mode :ensure t
-  :init
-  (setq lsp-keymap-prefix "C-l")
-  :hook ((lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
-(use-package lsp-ui :ensure t :commands lsp-ui-mode)
-
 ;; Languages
 (use-package go-mode :ensure t
   :mode "\\.go\\'"
-  :config
-  (defun my/go-mode-setup ()
-    (add-hook 'before-save-hook #'lsp-format-buffer t t))
-  (add-hook 'go-mode-hook #'my/go-mode-setup))
-(use-package lsp-mode :hook ((go-mode . lsp)))
+  :hook ((go-mode . eglot-ensure)))
+;; (use-package lsp-mode :hook ((go-mode . lsp)))
 
 ;; ML And coding assistants
 (use-package gptel :ensure t
-  :bind (("C-c C-g m" . gptel-menu)
+  :bind (("C-c C-g m"   . gptel-menu)
          ("C-c C-g RET" . gptel-send)))
