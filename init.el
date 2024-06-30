@@ -177,7 +177,6 @@
 (use-package go-mode :ensure t
   :mode "\\.go\\'"
   :hook ((go-mode . eglot-ensure)))
-;; (use-package lsp-mode :hook ((go-mode . lsp)))
 
 ;; ML And coding assistants
 (use-package gptel :ensure t
