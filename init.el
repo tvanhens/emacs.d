@@ -57,10 +57,9 @@
   (read-extended-command-predicate #'command-completion-default-include-p)
   :init
   (set-frame-font "Inconsolata 18" nil t)
-  (global-display-line-numbers-mode t)
-  (desktop-save-mode 1)
   (electric-pair-mode t)
   (recentf-mode t)
+  (desktop-save-mode t)
 
   (setq-default tab-width 4)
 
@@ -84,9 +83,13 @@
 
 (use-package better-defaults :ensure t)
 
-(use-package gruvbox-theme :ensure t
+;; (use-package gruvbox-theme :ensure t
+;;   :init
+;;   (load-theme 'gruvbox-dark-medium t))
+
+(use-package cyberpunk-theme :ensure t
   :init
-  (load-theme 'gruvbox-dark-medium t))
+  (load-theme 'cyberpunk t))
 
 (use-package all-the-icons :ensure t
   :if (display-graphic-p))
@@ -175,10 +178,25 @@
 
 ;; Languages
 (use-package go-mode :ensure t
+  :commands go-mode
   :mode "\\.go\\'"
-  :hook ((go-mode . eglot-ensure)))
+  :hook ((go-mode . eglot-ensure)
+         (emacs-lisp-mode . display-line-numbers-mode)))
+
+(use-package elisp-mode
+  :hook ((emacs-lisp-mode . display-line-numbers-mode)))
 
 ;; ML And coding assistants
 (use-package gptel :ensure t
   :bind (("C-c C-g m"   . gptel-menu)
-         ("C-c C-g RET" . gptel-send)))
+         ("C-c C-g RET" . gptel-send)
+         ("C-c C-g c"   . gptel)))
+
+(use-package dashboard
+  :ensure t
+  :init
+  (setq dashboard-icon-type 'all-the-icons)
+  (setq dashboard-items '((recents   . 5)
+                          (projects  . 5)
+                          (agenda    . 5)))
+  (dashboard-setup-startup-hook))
