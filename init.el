@@ -59,6 +59,7 @@
   (set-frame-font "Inconsolata 18" nil t)
   (electric-pair-mode t)
   (recentf-mode t)
+
   (desktop-save-mode t)
 
   (setq-default tab-width 4)
@@ -118,9 +119,9 @@
   :after vertico
   ;; More convenient directory navigation commands
   :bind (:map vertico-map
-              ("RET" . vertico-directory-enter)
-              ("C-j" . vertico-directory-enter)
-              ("DEL" . vertico-directory-delete-char)
+              ("RET"   . vertico-directory-enter)
+              ("C-j"   . vertico-directory-enter)
+              ("DEL"   . vertico-directory-delete-char)
               ("M-DEL" . vertico-directory-delete-word))
   ;; Tidy shadowed file names
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
@@ -176,17 +177,27 @@
 (use-package eat :ensure t
   :bind (("C-c C-t" . eat)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages
-(use-package go-mode :ensure t
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package eglot
+  :bind
+  (("C-<return>" . eglot-code-actions)))
+
+(use-package go-mode :ensure (:wait t)
   :commands go-mode
   :mode "\\.go\\'"
-  :hook ((go-mode . eglot-ensure)
+  :hook ((go-mode         . eglot-ensure)
          (emacs-lisp-mode . display-line-numbers-mode)))
 
 (use-package elisp-mode
   :hook ((emacs-lisp-mode . display-line-numbers-mode)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ML And coding assistants
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (use-package gptel :ensure t
   :bind (("C-c C-g m"   . gptel-menu)
          ("C-c C-g RET" . gptel-send)
@@ -195,6 +206,7 @@
 (use-package dashboard
   :ensure t
   :init
+  (setq dashboard-startup-banner 'logo)
   (setq dashboard-icon-type 'all-the-icons)
   (setq dashboard-items '((recents   . 5)
                           (projects  . 5)
