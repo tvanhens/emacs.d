@@ -103,35 +103,6 @@
 (use-package multiple-cursors :ensure t
   :bind (("M-d" . 'mc/mark-next-like-this-symbol)))
 
-(use-package corfu :ensure t
-  ;; Corfu is used for completions
-  :custom
-  (corfu-auto t)
-  :init
-  (global-corfu-mode))
-
-(use-package vertico :ensure t
-  :init
-  (ido-mode nil)
-  (vertico-mode t))
-
-(use-package vertico-directory :ensure nil
-  :after vertico
-  ;; More convenient directory navigation commands
-  :bind (:map vertico-map
-              ("RET"   . vertico-directory-enter)
-              ("C-j"   . vertico-directory-enter)
-              ("DEL"   . vertico-directory-delete-char)
-              ("M-DEL" . vertico-directory-delete-word))
-  ;; Tidy shadowed file names
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-
-(use-package orderless
-  :ensure t
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
-
 (use-package dirvish :ensure t
   :after all-the-icons
   :init
@@ -163,11 +134,6 @@
   :bind (("C-x g" . magit-status)))
 (use-package transient :ensure t)
 
-(use-package consult :ensure t
-  :bind (("C-x b" . consult-buffer)
-         ("C-s"   . consult-line)
-         ("M-y"   . consult-yank-pop)))
-
 (use-package undo-tree :ensure t
   :bind (("C-x u"))
   :config
@@ -178,21 +144,123 @@
   :bind (("C-c C-t" . eat)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Completions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package corfu
+  :ensure t
+  ;; Corfu is used for completions
+  :custom
+  (corfu-auto t)
+  :init
+  (global-corfu-mode))
+
+(use-package vertico
+  :ensure t
+  :init
+  (ido-mode nil)
+  (vertico-mode t))
+
+(use-package vertico-directory
+  :after vertico
+  ;; More convenient directory navigation commands
+  :bind (:map vertico-map
+              ("RET"   . vertico-directory-enter)
+              ("C-j"   . vertico-directory-enter)
+              ("DEL"   . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package consult
+  :ensure t
+  :bind (("C-x b" . consult-buffer)
+         ("C-s"   . consult-line)
+         ("M-y"   . consult-yank-pop)))
+
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode))
+
+(use-package embark
+  :ensure t
+
+  :bind
+  (("C-."   . embark-act)         ;; pick some comfortable binding
+   ("C-;"   . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  ;; Show the Embark target at point via Eldoc. You may adjust the
+  ;; Eldoc strategy, if you want to see the documentation from
+  ;; multiple providers. Beware that using this can be a little
+  ;; jarring since the message shown in the minibuffer can be more
+  ;; than one line, causing the modeline to move up and down:
+
+  ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none))))
+
+  (defun my/run-go-test (content)
+    (let ((match-pos (string-match "func[[:space:]]+\\([[:word:]]+\\)" content)))
+      (if match-pos
+          (let ((fn-name (match-string 1 content)))
+            (let ((default-directory (project-root (project-current t))))
+              (shell-command (concat "go test -v -run '^" fn-name "$' ./..."))))
+        "No match found")))
+  
+  (keymap-set embark-defun-map "C-t" #'my/run-go-test))
+
+(use-package embark-consult
+  :ensure t ; only need to install it, embark loads it after consult if found
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my/check-eglot-dep (bin install-command)
+  "Check installation of eglot dependency and warn if it doesn't exist."
+  (let ((path  (executable-find bin)))
+    (if (not path)
+        (warn (concat bin " not found. Install with `" install-command "`")))))
 
 (use-package eglot
   :bind
   (("C-<return>" . eglot-code-actions)))
 
+(use-package prog-mode
+  :hook ((prog-mode . display-line-numbers-mode)))
+
 (use-package go-mode :ensure (:wait t)
+  :if (my/check-eglot-dep "gopls" "go install golang.org/x/tools/gopls@latest")
   :commands go-mode
   :mode "\\.go\\'"
-  :hook ((go-mode         . eglot-ensure)
-         (emacs-lisp-mode . display-line-numbers-mode)))
+  :hook ((go-mode . eglot-ensure)))
 
-(use-package elisp-mode
-  :hook ((emacs-lisp-mode . display-line-numbers-mode)))
+(use-package rust-mode :ensure (:wait t)
+  :if (my/check-eglot-dep "rust-analyzer" "rustup component add rust-analyzer")
+  :commands rust-mode
+  :mode "\\.rs\\'"
+  :hook ((rust-mode . eglot-ensure)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ML And coding assistants
