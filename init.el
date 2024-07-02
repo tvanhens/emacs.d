@@ -78,6 +78,11 @@
           insert-directory-program "gls"
           dired-listing-switches "-aBhl --group-directories-first")))
 
+(use-package windmove
+  :config
+  (when (fboundp 'windmove-default-keybindings)
+    (windmove-default-keybindings)))
+
 (use-package exec-path-from-shell :ensure t
   :init
   (exec-path-from-shell-initialize))
