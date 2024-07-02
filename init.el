@@ -246,9 +246,11 @@
   "Check installation of eglot dependency and warn if it doesn't exist."
   (let ((path  (executable-find bin)))
     (if (not path)
-        (warn (concat bin " not found. Install with `" install-command "`")))))
+        (warn (concat bin " not found. Install with `" install-command "`"))
+      t)))
 
 (use-package eglot
+  :commands eglot-ensure
   :bind
   (("C-<return>" . eglot-code-actions)))
 
