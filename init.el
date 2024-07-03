@@ -269,6 +269,10 @@
   :mode "\\.rs\\'"
   :hook ((rust-mode . eglot-ensure)))
 
+(use-package yaml-mode :ensure (:wait t)
+  :commands yaml-mode
+  :mode "\\.yaml\\'")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ML And coding assistants
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -287,3 +291,9 @@
                           (projects  . 5)
                           (agenda    . 5)))
   (dashboard-setup-startup-hook))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
