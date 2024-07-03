@@ -122,7 +122,7 @@
   (setq dirvish-default-layout '(0 0.4 0.6))
   
   :bind
-  (("C-x d" . dirvish)
+  (("C-x d" . dirvish-side)
    :map dirvish-mode-map
    ("a"   . dirvish-quick-access)
    ("n"   . dirvish-narrow)
@@ -297,3 +297,7 @@
 (use-package docker
   :ensure t
   :bind ("C-c d" . docker))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
