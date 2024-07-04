@@ -56,6 +56,9 @@
   ;; Only include commands appropriate for the current buffer
   (read-extended-command-predicate #'command-completion-default-include-p)
   :init
+  (setq gc-cons-threshold 100000000)
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+
   (set-frame-font "Inconsolata 18" nil t)
   (electric-pair-mode t)
   (recentf-mode t)
@@ -249,25 +252,37 @@
         (warn (concat bin " not found. Install with `" install-command "`"))
       t)))
 
-(use-package eglot
-  :commands eglot-ensure
-  :bind
-  (("C-<return>" . eglot-code-actions)))
+;; (use-package eglot
+;;   :commands eglot-ensure
+;;   :bind
+;;   (("C-<return>" . eglot-code-actions)))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-enable-snippet nil))
+(use-package lsp-ui :commands lsp-ui-mode :ensure t)
 
 (use-package prog-mode
   :hook ((prog-mode . display-line-numbers-mode)))
 
 (use-package go-mode :ensure (:wait t)
   :if (my/check-eglot-dep "gopls" "go install golang.org/x/tools/gopls@latest")
+  :hook ((go-mode . lsp))
   :commands go-mode
-  :mode "\\.go\\'"
-  :hook ((go-mode . eglot-ensure)))
+  :mode "\\.go\\'")
 
 (use-package rust-mode :ensure (:wait t)
   :if (my/check-eglot-dep "rust-analyzer" "rustup component add rust-analyzer")
+  :hook ((rust-mode . lsp))
   :commands rust-mode
-  :mode "\\.rs\\'"
-  :hook ((rust-mode . eglot-ensure)))
+  :mode "\\.rs\\'")
 
 (use-package yaml-mode :ensure (:wait t)
   :commands yaml-mode
